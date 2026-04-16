@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--secondaryWhite: #dcdcdc;
+	--rbc-border: #2a2a2a;
+	--rbc-blue: #1194e4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+
+	--color-revDeskBlue: #1194e4;
+	--color-revDeskGreen: #39b972;
+	--color-revDeskOrange: #ffa500;
+	--color-revDeskYellow: #f5c518;
+	--color-revDeskRed: #e53e3e;
+	--color-revDeskBlack: #1d2124;
+	--color-revDeskBlack-dark: #181818;
+	--color-revDeskBlack-light: #212121;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* react-calendar dark theme */
+.revdesk-calendar {
+	width: 100% !important;
+	background: transparent !important;
+	border: none !important;
+	font-family: inherit !important;
+	color: white !important;
+}
+.revdesk-calendar .react-calendar__navigation button {
+	color: white !important;
+	background: transparent !important;
+	font-size: 0.875rem !important;
+	font-weight: 600 !important;
+	min-width: unset !important;
+}
+.revdesk-calendar .react-calendar__navigation button:hover,
+.revdesk-calendar .react-calendar__navigation button:focus {
+	background: #212121 !important;
+	border-radius: 0.5rem !important;
+}
+.revdesk-calendar .react-calendar__month-view__weekdays__weekday {
+	color: #6b7280 !important;
+	font-size: 0.7rem !important;
+	text-transform: uppercase !important;
+	font-weight: 500 !important;
+}
+.revdesk-calendar .react-calendar__month-view__weekdays__weekday abbr {
+	text-decoration: none !important;
+}
+.revdesk-calendar .react-calendar__tile {
+	color: #9ca3af !important;
+	background: transparent !important;
+	border-radius: 9999px !important;
+	font-size: 0.8rem !important;
+	padding: 0.5rem 0.25rem !important;
+}
+.revdesk-calendar .react-calendar__tile:hover {
+	background: #212121 !important;
+	color: white !important;
+}
+.revdesk-calendar .react-calendar__tile--now {
+	background: #1194e4 !important;
+	color: white !important;
+	font-weight: 700 !important;
+}
+.revdesk-calendar .react-calendar__tile--active,
+.revdesk-calendar .react-calendar__tile--active:hover {
+	background: #1194e4cc !important;
+	color: white !important;
+}
+.revdesk-calendar .react-calendar__month-view__days__day--neighboringMonth {
+	color: #374151 !important;
 }
