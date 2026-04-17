@@ -12,7 +12,7 @@ import {
 	faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { signOut } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/lib/firebase/firebase";
 
 const menuItems = [
 	{
@@ -21,10 +21,7 @@ const menuItems = [
 	},
 	{
 		title: "PEOPLE",
-		items: [
-			{ icon: faUser, label: "Employees", href: "/employees" },
-			{ icon: faUserGroup, label: "Customers", href: "/customers" },
-		],
+		items: [{ icon: faUserGroup, label: "Customers", href: "/customers" }],
 	},
 	{
 		title: "BUSINESS",

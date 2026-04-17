@@ -33,6 +33,17 @@ export const getDateRange = (period: Period = "currentMonth") => {
 export const formatPhone = (phone: string) =>
 	phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 
+export const formatPostalCode = (postal: string) => {
+	const clean = postal.replace(/\s/g, "").toUpperCase();
+	if (clean.length === 6) return `${clean.slice(0, 3)} ${clean.slice(3)}`;
+	return postal.toUpperCase();
+};
+
+export const formatAddress = (street1: string, street2: string) => {
+	const parts = [street1, street2].filter(Boolean);
+	return parts.join(", ");
+};
+
 export const formatDate = (date: string) =>
 	new Date(date).toLocaleDateString("en-CA", {
 		year: "numeric",

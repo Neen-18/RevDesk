@@ -2,89 +2,14 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faEye,
-	faPlus,
-	faTrashCan,
 	faMagnifyingGlass,
 	faChevronLeft,
 	faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import AddCustomerButton from "@/components/actions/customer/AddCustomerButton";
+import DeleteCustomerButton from "@/components/actions/customer/DeleteCustomerButton";
 import { formatDate, formatPhone } from "@/lib/util";
-
-type Customer = {
-	id: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	phone: string;
-	lastVisit: string;
-	returnCounter: number;
-};
-
-const MOCK_CUSTOMERS: Customer[] = [
-	{
-		id: "1",
-		firstName: "Carlos",
-		lastName: "Mendoza",
-		email: "carlos@example.com",
-		phone: "5874219900",
-		lastVisit: "2026-04-10",
-		returnCounter: 14,
-	},
-	{
-		id: "2",
-		firstName: "Sarah",
-		lastName: "Johnson",
-		email: "sarah.j@example.com",
-		phone: "5873310022",
-		lastVisit: "2026-04-08",
-		returnCounter: 9,
-	},
-	{
-		id: "3",
-		firstName: "Mike",
-		lastName: "Chen",
-		email: "mike.chen@example.com",
-		phone: "5879905544",
-		lastVisit: "2026-03-28",
-		returnCounter: 11,
-	},
-	{
-		id: "4",
-		firstName: "David",
-		lastName: "Park",
-		email: "d.park@example.com",
-		phone: "5871234567",
-		lastVisit: "2026-03-15",
-		returnCounter: 6,
-	},
-	{
-		id: "5",
-		firstName: "Lisa",
-		lastName: "Torres",
-		email: "lisa.t@example.com",
-		phone: "5876667788",
-		lastVisit: "2026-04-01",
-		returnCounter: 5,
-	},
-	{
-		id: "6",
-		firstName: "James",
-		lastName: "Wright",
-		email: "jwright@example.com",
-		phone: "5872223344",
-		lastVisit: "2026-04-12",
-		returnCounter: 22,
-	},
-	{
-		id: "7",
-		firstName: "Maria",
-		lastName: "Gomez",
-		email: "maria.g@example.com",
-		phone: "5875556677",
-		lastVisit: "2026-04-05",
-		returnCounter: 3,
-	},
-];
+import { getCustomers, Customer } from "@/lib/firebase/firestore";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -126,8 +51,9 @@ const CustomerListPage = async ({
 	const dateRange = (params.dateRange as DateRange) ?? "allTime";
 	const page = params.page ? parseInt(params.page) : 1;
 
+	const allCustomers = await getCustomers();
 	const { start, end } = getDateBounds(dateRange);
-	const filtered = MOCK_CUSTOMERS.filter((c) => {
+	const filtered = allCustomers.filter((c: Customer) => {
 		const d = new Date(c.lastVisit);
 		return d >= start && d <= end;
 	});
@@ -188,10 +114,7 @@ const CustomerListPage = async ({
 								className="bg-transparent outline-none text-sm text-white placeholder-gray-500 w-44"
 							/>
 						</div>
-						<button className="flex items-center gap-2 bg-revDeskBlue hover:bg-revDeskBlue/80 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors cursor-pointer">
-							<FontAwesomeIcon icon={faPlus} className="w-3.5" />
-							Add Customer
-						</button>
+						<AddCustomerButton />
 					</div>
 				</div>
 
@@ -238,12 +161,7 @@ const CustomerListPage = async ({
 												/>
 											</button>
 										</Link>
-										<button className="cursor-pointer w-7 h-7 flex items-center justify-center rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors">
-											<FontAwesomeIcon
-												icon={faTrashCan}
-												className="text-red-400 w-3.5"
-											/>
-										</button>
+										<DeleteCustomerButton id={customer.id} />
 									</div>
 								</td>
 							</tr>
