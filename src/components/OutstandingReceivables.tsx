@@ -4,13 +4,13 @@ const fmt = (n: number) =>
 		maximumFractionDigits: 2,
 	});
 
-const MOCK_RECEIVABLES = {
-	pending: 7850,
-	overdue: 3120,
-};
-
-const OutstandingReceivables = () => {
-	const { pending, overdue } = MOCK_RECEIVABLES;
+const OutstandingReceivables = ({
+	pending,
+	overdue,
+}: {
+	pending: number;
+	overdue: number;
+}) => {
 	const total = pending + overdue;
 	const overduePct = total > 0 ? Math.round((overdue / total) * 100) : 0;
 

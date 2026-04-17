@@ -9,30 +9,25 @@ const RANK_BORDERS = [
 ];
 
 type SortBy = "revenue" | "jobs";
-
-const MOCK_SERVICES = [
-	{ serviceType: "Paint Correction", jobs: 32, revenue: 9600 },
-	{ serviceType: "Ceramic Coating", jobs: 18, revenue: 7200 },
-	{ serviceType: "Window Tint", jobs: 27, revenue: 4050 },
-	{ serviceType: "PPF Install", jobs: 11, revenue: 3850 },
-	{ serviceType: "Detail Package", jobs: 24, revenue: 2880 },
-];
+type ServiceStat = { serviceType: string; jobs: number; revenue: number };
 
 const ServiceLeaderboard = ({
+	services,
 	sortBy = "revenue",
 	searchParams,
 }: {
-	startDate: string;
-	endDate: string;
+	services: ServiceStat[];
 	sortBy?: SortBy;
 	searchParams: { [key: string]: string | undefined };
 }) => {
-	const services = [...MOCK_SERVICES].sort((a, b) =>
-		sortBy === "jobs" ? b.jobs - a.jobs : b.revenue - a.revenue,
-	);
+	const sorted = [...services]
+		.sort((a, b) =>
+			sortBy === "jobs" ? b.jobs - a.jobs : b.revenue - a.revenue,
+		)
+		.slice(0, 5);
 
-	const maxRevenue = services[0]?.revenue ?? 1;
-	const maxJobs = services[0]?.jobs ?? 1;
+	const maxRevenue = sorted[0]?.revenue ?? 1;
+	const maxJobs = sorted[0]?.jobs ?? 1;
 
 	return (
 		<div className="bg-revDeskBlack-dark rounded-xl p-5 h-full flex flex-col">
@@ -77,59 +72,63 @@ const ServiceLeaderboard = ({
 				</div>
 			</div>
 
-			<div className="flex flex-col gap-4">
-				{services.map((service, rank) => {
-					const barWidth =
-						sortBy === "jobs"
-							? Math.round((service.jobs / maxJobs) * 100)
-							: Math.round((service.revenue / maxRevenue) * 100);
-					const isPodium = rank < 3;
+			{sorted.length === 0 ? (
+				<p className="text-sm text-gray-500">No services this period</p>
+			) : (
+				<div className="flex flex-col gap-4">
+					{sorted.map((service, rank) => {
+						const barWidth =
+							sortBy === "jobs"
+								? Math.round((service.jobs / maxJobs) * 100)
+								: Math.round((service.revenue / maxRevenue) * 100);
+						const isPodium = rank < 3;
 
-					return (
-						<div
-							key={service.serviceType}
-							className={`flex items-center gap-3 p-3 rounded-lg bg-revDeskBlack-light ${isPodium ? `border-l-2 ${RANK_BORDERS[rank]}` : ""}`}>
-							<div className="w-8 text-center shrink-0">
-								{isPodium ? (
-									<span className="text-lg">{MEDALS[rank]}</span>
-								) : (
-									<span className="text-gray-500 text-sm font-bold">
-										#{rank + 1}
-									</span>
-								)}
-							</div>
+						return (
+							<div
+								key={service.serviceType}
+								className={`flex items-center gap-3 p-3 rounded-lg bg-revDeskBlack-light ${isPodium ? `border-l-2 ${RANK_BORDERS[rank]}` : ""}`}>
+								<div className="w-8 text-center shrink-0">
+									{isPodium ? (
+										<span className="text-lg">{MEDALS[rank]}</span>
+									) : (
+										<span className="text-gray-500 text-sm font-bold">
+											#{rank + 1}
+										</span>
+									)}
+								</div>
 
-							<div className="flex-1 min-w-0">
-								<div className="flex justify-between items-center mb-1.5">
-									<span className="text-sm font-semibold text-white truncate pr-2">
-										{service.serviceType}
-									</span>
-									<div className="flex items-center gap-3 shrink-0">
-										<span
-											className={`text-xs font-semibold ${sortBy === "jobs" ? "text-revDeskBlue" : "text-gray-500"}`}>
-											{service.jobs} job{service.jobs !== 1 ? "s" : ""}
+								<div className="flex-1 min-w-0">
+									<div className="flex justify-between items-center mb-1.5">
+										<span className="text-sm font-semibold text-white truncate pr-2">
+											{service.serviceType}
 										</span>
-										<span
-											className={`text-sm font-bold ${sortBy === "revenue" ? "text-revDeskGreen" : "text-gray-500"}`}>
-											${service.revenue.toLocaleString()}
-										</span>
+										<div className="flex items-center gap-3 shrink-0">
+											<span
+												className={`text-xs font-semibold ${sortBy === "jobs" ? "text-revDeskBlue" : "text-gray-500"}`}>
+												{service.jobs} job{service.jobs !== 1 ? "s" : ""}
+											</span>
+											<span
+												className={`text-sm font-bold ${sortBy === "revenue" ? "text-revDeskGreen" : "text-gray-500"}`}>
+												${service.revenue.toLocaleString()}
+											</span>
+										</div>
+									</div>
+									<div className="w-full bg-revDeskBlack rounded-full h-1.5 overflow-hidden">
+										<div
+											className={`h-1.5 rounded-full transition-all ${
+												sortBy === "jobs"
+													? "bg-linear-to-r from-revDeskBlue to-revDeskBlue/60"
+													: "bg-linear-to-r from-revDeskBlue to-revDeskGreen"
+											}`}
+											style={{ width: `${barWidth}%` }}
+										/>
 									</div>
 								</div>
-								<div className="w-full bg-revDeskBlack rounded-full h-1.5 overflow-hidden">
-									<div
-										className={`h-1.5 rounded-full transition-all ${
-											sortBy === "jobs"
-												? "bg-linear-to-r from-revDeskBlue to-revDeskBlue/60"
-												: "bg-linear-to-r from-revDeskBlue to-revDeskGreen"
-										}`}
-										style={{ width: `${barWidth}%` }}
-									/>
-								</div>
 							</div>
-						</div>
-					);
-				})}
-			</div>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 };

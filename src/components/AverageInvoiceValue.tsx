@@ -4,16 +4,17 @@ const fmt = (n: number) =>
 		maximumFractionDigits: 2,
 	});
 
-const MOCK_INVOICE_DATA = {
-	avg: 347.5,
-	highest: 1280.0,
-	lowest: 45.0,
-	count: 62,
-};
-
-const AverageInvoiceValue = (_: { startDate: string; endDate: string }) => {
-	const { avg, highest, lowest, count } = MOCK_INVOICE_DATA;
-
+const AverageInvoiceValue = ({
+	avg,
+	highest,
+	lowest,
+	count,
+}: {
+	avg: number;
+	highest: number;
+	lowest: number;
+	count: number;
+}) => {
 	return (
 		<div className="bg-revDeskBlack-dark rounded-xl p-5 flex flex-col gap-3 flex-1">
 			<div>

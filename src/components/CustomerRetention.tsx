@@ -1,10 +1,10 @@
-const MOCK_RETENTION = {
-	returningCount: 38,
-	newCount: 14,
-};
-
-const CustomerRetention = (_: { startDate: string; endDate: string }) => {
-	const { returningCount, newCount } = MOCK_RETENTION;
+const CustomerRetention = ({
+	returningCount,
+	newCount,
+}: {
+	returningCount: number;
+	newCount: number;
+}) => {
 	const total = returningCount + newCount;
 	const retentionPct =
 		total > 0 ? Math.round((returningCount / total) * 100) : 0;

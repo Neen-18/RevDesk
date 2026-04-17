@@ -32,7 +32,7 @@ const menuItems = [
 	{
 		title: "OTHER",
 		items: [
-			{ icon: faUser, label: "Profile", href: "/profile" },
+			{ icon: faUser, label: "Profile", href: "/admin" },
 			{ icon: faGear, label: "Settings", href: "/admin" }, // Don't have this implemented so just redirect to home
 		],
 	},
