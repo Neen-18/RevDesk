@@ -1,9 +1,5 @@
 import { notFound } from "next/navigation";
-import {
-	getCustomer,
-	getCustomerInvoices,
-	InvoiceStatus,
-} from "@/lib/firebase/firestore";
+import { getCustomer, getCustomerInvoices } from "@/lib/firebase/firestore";
 import EditCustomerButton from "@/components/actions/customer/EditCustomerButton";
 import {
 	formatDate,
@@ -11,6 +7,7 @@ import {
 	formatPostalCode,
 	formatAddress,
 } from "@/lib/util";
+import { InvoiceStatus } from "@/lib/types";
 
 const STATUS_STYLES: Record<InvoiceStatus, string> = {
 	Paid: "bg-revDeskGreen/20 text-revDeskGreen",
