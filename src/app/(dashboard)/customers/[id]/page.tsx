@@ -29,6 +29,8 @@ const CustomerDetailPage = async ({
 
 	if (!customer) notFound();
 
+	const plainCustomer = JSON.parse(JSON.stringify(customer));
+
 	return (
 		<div className="p-6 flex flex-col gap-6">
 			<div className="flex items-start justify-between">
@@ -38,7 +40,7 @@ const CustomerDetailPage = async ({
 					</h1>
 					<p className="text-sm text-gray-400 mt-1">{customer.email}</p>
 				</div>
-				<EditCustomerButton customer={customer} />
+				<EditCustomerButton customer={plainCustomer} />
 			</div>
 
 			<div className="bg-revDeskBlack-dark rounded-xl p-6 grid grid-cols-2 gap-4">

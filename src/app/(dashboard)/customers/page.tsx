@@ -10,7 +10,8 @@ import AddCustomerButton from "@/components/actions/customer/AddCustomerButton";
 import DeleteCustomerButton from "@/components/actions/customer/DeleteCustomerButton";
 import EditCustomerIconButton from "@/components/actions/customer/EditCustomerIconButton";
 import { formatDate, formatPhone } from "@/lib/util";
-import { getCustomers, Customer } from "@/lib/firebase/firestore";
+import { getCustomers } from "@/lib/firebase/firestore";
+import { Customer } from "@/lib/types";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -52,7 +53,9 @@ const CustomerListPage = async ({
 	const dateRange = (params.dateRange as DateRange) ?? "allTime";
 	const page = params.page ? parseInt(params.page) : 1;
 
-	const allCustomers: Customer[] = JSON.parse(JSON.stringify(await getCustomers()));
+	const allCustomers: Customer[] = JSON.parse(
+		JSON.stringify(await getCustomers()),
+	);
 	const { start, end } = getDateBounds(dateRange);
 	const filtered = allCustomers.filter((c: Customer) => {
 		const d = new Date(c.lastVisit);
@@ -156,7 +159,10 @@ const CustomerListPage = async ({
 									<div className="flex items-center gap-2">
 										<Link href={`/customers/${customer.id}`}>
 											<button className="cursor-pointer w-7 h-7 flex items-center justify-center rounded-full bg-revDeskBlue hover:bg-revDeskBlue/80 transition-colors">
-												<FontAwesomeIcon icon={faEye} className="text-white w-3.5" />
+												<FontAwesomeIcon
+													icon={faEye}
+													className="text-white w-3.5"
+												/>
 											</button>
 										</Link>
 										<EditCustomerIconButton customer={customer} />
