@@ -1,32 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import {
-	createInvoice,
-	Customer,
-	InvoiceStatus,
-	ServiceLine,
-} from "@/lib/firebase/firestore";
+import { createInvoice, createCustomer } from "@/lib/firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Field from "@/components/Field";
+import {
+	Customer,
+	INVOICE_STATUS,
+	InvoiceStatus,
+	PAYMENT_TYPES,
+	ServiceLine,
+	VEHICLE_TYPES,
+} from "@/lib/types";
 
 type Props = {
 	onClose: () => void;
 	onCreated: () => void;
 	customers: Customer[];
 };
-
-const STATUSES: InvoiceStatus[] = ["Draft", "Pending", "Paid", "Overdue"];
-const PAYMENT_TYPES = [
-	"-- Select --",
-	"Cash",
-	"Credit Card",
-	"Debit Card",
-	"E-Transfer",
-	"Cheque",
-];
-const VEHICLE_TYPES = ["Sedan", "SUV", "Truck", "Van", "Motorcycle", "Other"];
 
 const emptyService = (): ServiceLine => ({
 	vehicleType: "SUV",
@@ -95,8 +87,21 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 		e.preventDefault();
 		setLoading(true);
 		try {
+			let customerId = customerForm.customerId;
+			if (!customerId) {
+				customerId = await createCustomer({
+					firstName: customerForm.firstName,
+					lastName: customerForm.lastName,
+					email: customerForm.email,
+					phone: customerForm.phone,
+					streetAddress1: customerForm.address,
+					streetAddress2: "",
+					postalCode: "",
+					notes: "",
+				});
+			}
 			await createInvoice({
-				customerId: customerForm.customerId,
+				customerId,
 				customerName: `${customerForm.firstName} ${customerForm.lastName}`,
 				phone: customerForm.phone,
 				email: customerForm.email,
@@ -229,7 +234,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 										value={status}
 										onChange={(e) => setStatus(e.target.value as InvoiceStatus)}
 										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskBlue">
-										{STATUSES.map((s) => (
+										{INVOICE_STATUS.map((s) => (
 											<option key={s} value={s}>
 												{s}
 											</option>
