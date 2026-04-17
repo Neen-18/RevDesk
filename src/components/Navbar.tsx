@@ -1,10 +1,12 @@
-import {
-	faCommentDots,
-	faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+"use client";
 
-const Navbar = async () => {
+import { faCommentDots, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "@/app/context/AuthContext";
+
+const Navbar = () => {
+	const { user } = useAuth();
+
 	return (
 		<div className="flex items-center justify-between p-4">
 			{/* SEARCH BAR */}
@@ -23,7 +25,7 @@ const Navbar = async () => {
 				</div>
 				<div className="flex flex-col">
 					<span className="text-xs leading-3 font-medium text-white">
-						John Doe
+						{user?.displayName ?? "Guest"}
 					</span>
 				</div>
 			</div>

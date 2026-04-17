@@ -188,7 +188,7 @@ const CustomerListPage = async ({
 								className="bg-transparent outline-none text-sm text-white placeholder-gray-500 w-44"
 							/>
 						</div>
-						<button className="flex items-center gap-2 bg-revDeskBlue hover:bg-revDeskBlue/80 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors">
+						<button className="flex items-center gap-2 bg-revDeskBlue hover:bg-revDeskBlue/80 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors cursor-pointer">
 							<FontAwesomeIcon icon={faPlus} className="w-3.5" />
 							Add Customer
 						</button>
@@ -231,14 +231,14 @@ const CustomerListPage = async ({
 								<td className="py-3">
 									<div className="flex items-center gap-2">
 										<Link href={`/customers/${customer.id}`}>
-											<button className="w-7 h-7 flex items-center justify-center rounded-full bg-revDeskBlue hover:bg-revDeskBlue/80 transition-colors">
+											<button className="cursor-pointer w-7 h-7 flex items-center justify-center rounded-full bg-revDeskBlue hover:bg-revDeskBlue/80 transition-colors">
 												<FontAwesomeIcon
 													icon={faEye}
 													className="text-white w-3.5"
 												/>
 											</button>
 										</Link>
-										<button className="w-7 h-7 flex items-center justify-center rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors">
+										<button className="cursor-pointer w-7 h-7 flex items-center justify-center rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors">
 											<FontAwesomeIcon
 												icon={faTrashCan}
 												className="text-red-400 w-3.5"

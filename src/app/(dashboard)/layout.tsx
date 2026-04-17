@@ -13,7 +13,7 @@ export default function DashboardLayout({
 			{/* LEFT */}
 			<div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-4 bg-revDeskBlack-dark">
 				<Link
-					href="/"
+					href="/admin"
 					className="flex items-center justify-center p-2 border-b-2 border-b-gray-600">
 					<Image
 						src="/static/logo_light.png"
