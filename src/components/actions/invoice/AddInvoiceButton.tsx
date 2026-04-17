@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CreateInvoiceModal from "./CreateInvoiceModal";
-import { Customer } from "@/lib/firebase/firestore";
+import { Customer } from "@/lib/types";
 
 const AddInvoiceButton = ({ customers }: { customers: Customer[] }) => {
 	const [open, setOpen] = useState(false);

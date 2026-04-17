@@ -9,34 +9,20 @@ import {
 	query,
 	where,
 	serverTimestamp,
+	increment,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { Customer, Invoice, NewCustomer, NewInvoice } from "../types";
 
 // Customer operations
-export type NewCustomer = {
-	firstName: string;
-	lastName: string;
-	email: string;
-	phone: string;
-	streetAddress1: string;
-	streetAddress2: string;
-	postalCode: string;
-	notes: string;
-};
-
-export type Customer = NewCustomer & {
-	id: string;
-	returnCounter: number;
-	lastVisit: string;
-};
-
-export const createCustomer = async (data: NewCustomer) => {
-	await addDoc(collection(db, "customers"), {
+export const createCustomer = async (data: NewCustomer): Promise<string> => {
+	const ref = await addDoc(collection(db, "customers"), {
 		...data,
-		returnCounter: 0,
+		returnCounter: 1,
 		lastVisit: new Date().toISOString().split("T")[0],
 		createdAt: serverTimestamp(),
 	});
+	return ref.id;
 };
 
 export const getCustomer = async (id: string): Promise<Customer | null> => {
@@ -62,44 +48,35 @@ export const deleteCustomer = async (id: string) => {
 };
 
 // Invoices operations
-
-export type InvoiceStatus = "Paid" | "Pending" | "Overdue" | "Draft";
-
-export type ServiceLine = {
-	vehicleType: string;
-	serviceType: string;
-	quantity: number;
-	price: number;
-	notes: string;
-};
-
-export type NewInvoice = {
-	customerId: string;
-	customerName: string;
-	phone: string;
-	email: string;
-	address: string;
-	status: InvoiceStatus;
-	paymentType: string;
-	services: ServiceLine[];
-	amount: number;
-};
-
-export type Invoice = NewInvoice & {
-	id: string;
-	createdAt: string;
-};
-
 export const createInvoice = async (data: NewInvoice) => {
-	await addDoc(collection(db, "invoices"), {
-		...data,
-		createdAt: new Date().toISOString().split("T")[0],
-	});
+	const snap = await getDocs(collection(db, "invoices"));
+	const invoiceNumber = `#${String(snap.size + 1).padStart(4, "0")}`; // Sets the format to #0001, #0002, etc.
+	await Promise.all([
+		addDoc(collection(db, "invoices"), {
+			...data,
+			invoiceNumber,
+			createdAt: new Date().toISOString().split("T")[0],
+		}),
+		updateDoc(doc(db, "customers", data.customerId), {
+			returnCounter: increment(1),
+			lastVisit: new Date().toISOString().split("T")[0],
+		}),
+	]);
+};
+
+export const getInvoice = async (id: string): Promise<Invoice | null> => {
+	const snap = await getDoc(doc(db, "invoices", id));
+	if (!snap.exists()) return null;
+	return { id: snap.id, ...snap.data() } as Invoice;
 };
 
 export const getInvoices = async (): Promise<Invoice[]> => {
 	const snap = await getDocs(collection(db, "invoices"));
 	return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Invoice);
+};
+
+export const updateInvoice = async (id: string, data: Partial<NewInvoice>) => {
+	await updateDoc(doc(db, "invoices", id), data);
 };
 
 export const deleteInvoice = async (id: string) => {

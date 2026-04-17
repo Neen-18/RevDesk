@@ -1,15 +1,13 @@
 import { notFound } from "next/navigation";
-import {
-	getCustomer,
-	getCustomerInvoices,
-	InvoiceStatus,
-} from "@/lib/firebase/firestore";
+import { getCustomer, getCustomerInvoices } from "@/lib/firebase/firestore";
+import EditCustomerButton from "@/components/actions/customer/EditCustomerButton";
 import {
 	formatDate,
 	formatPhone,
 	formatPostalCode,
 	formatAddress,
 } from "@/lib/util";
+import { InvoiceStatus } from "@/lib/types";
 
 const STATUS_STYLES: Record<InvoiceStatus, string> = {
 	Paid: "bg-revDeskGreen/20 text-revDeskGreen",
@@ -31,13 +29,18 @@ const CustomerDetailPage = async ({
 
 	if (!customer) notFound();
 
+	const plainCustomer = JSON.parse(JSON.stringify(customer));
+
 	return (
 		<div className="p-6 flex flex-col gap-6">
-			<div>
-				<h1 className="text-2xl font-bold text-white">
-					{customer.firstName} {customer.lastName}
-				</h1>
-				<p className="text-sm text-gray-400 mt-1">{customer.email}</p>
+			<div className="flex items-start justify-between">
+				<div>
+					<h1 className="text-2xl font-bold text-white">
+						{customer.firstName} {customer.lastName}
+					</h1>
+					<p className="text-sm text-gray-400 mt-1">{customer.email}</p>
+				</div>
+				<EditCustomerButton customer={plainCustomer} />
 			</div>
 
 			<div className="bg-revDeskBlack-dark rounded-xl p-6 grid grid-cols-2 gap-4">
@@ -105,7 +108,9 @@ const CustomerDetailPage = async ({
 								<tr
 									key={inv.id}
 									className="border-b border-revDeskBlack-light last:border-0">
-									<td className="py-3 text-white font-medium">{inv.id}</td>
+									<td className="py-3 text-white font-medium">
+										{inv.invoiceNumber ?? inv.id}
+									</td>
 									<td className="py-3 text-gray-400">
 										{formatDate(inv.createdAt)}
 									</td>

@@ -8,8 +8,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import AddCustomerButton from "@/components/actions/customer/AddCustomerButton";
 import DeleteCustomerButton from "@/components/actions/customer/DeleteCustomerButton";
+import EditCustomerIconButton from "@/components/actions/customer/EditCustomerIconButton";
 import { formatDate, formatPhone } from "@/lib/util";
-import { getCustomers, Customer } from "@/lib/firebase/firestore";
+import { getCustomers } from "@/lib/firebase/firestore";
+import { Customer } from "@/lib/types";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -51,7 +53,9 @@ const CustomerListPage = async ({
 	const dateRange = (params.dateRange as DateRange) ?? "allTime";
 	const page = params.page ? parseInt(params.page) : 1;
 
-	const allCustomers = await getCustomers();
+	const allCustomers: Customer[] = JSON.parse(
+		JSON.stringify(await getCustomers()),
+	);
 	const { start, end } = getDateBounds(dateRange);
 	const filtered = allCustomers.filter((c: Customer) => {
 		const d = new Date(c.lastVisit);
@@ -161,6 +165,7 @@ const CustomerListPage = async ({
 												/>
 											</button>
 										</Link>
+										<EditCustomerIconButton customer={customer} />
 										<DeleteCustomerButton id={customer.id} />
 									</div>
 								</td>
