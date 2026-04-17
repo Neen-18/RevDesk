@@ -35,7 +35,14 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+button,
+a,
+[role="button"] {
+	cursor: pointer;
+}
+
 /* react-calendar dark theme */
+/* https://dev.to/fitzgeraldkd/react-calendar-with-custom-styles-30c9 */
 .revdesk-calendar {
 	width: 100% !important;
 	background: transparent !important;

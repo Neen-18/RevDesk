@@ -1,6 +1,9 @@
 "use client";
 
-import { faCommentDots, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+	faCommentDots,
+	faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "@/app/context/AuthContext";
 
