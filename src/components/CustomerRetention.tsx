@@ -11,9 +11,9 @@ const CustomerRetention = ({
 	const newPct = total > 0 ? 100 - retentionPct : 0;
 
 	return (
-		<div className="bg-revDeskBlack-dark rounded-xl p-5">
+		<div className="bg-revDeskPink-dark rounded-xl p-5 border-b-3 border-revDeskPink">
 			<div className="mb-4">
-				<h2 className="text-base font-bold text-white">Customer Retention</h2>
+				<h2 className="text-base font-bold text-revDeskPurple-dark">Customer Retention</h2>
 				<p className="text-[11px] text-gray-500 mt-0.5">
 					New vs returning this period
 				</p>

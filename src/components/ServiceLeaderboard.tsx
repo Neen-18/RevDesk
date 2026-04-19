@@ -30,17 +30,17 @@ const ServiceLeaderboard = ({
 	const maxJobs = sorted[0]?.jobs ?? 1;
 
 	return (
-		<div className="bg-revDeskBlack-dark rounded-xl p-5 h-full flex flex-col">
+		<div className="bg-revDeskPink-dark rounded-xl p-5 h-full flex flex-col border-b-3 border-revDeskPink">
 			<div className="flex justify-between items-start mb-5">
 				<div>
-					<h1 className="text-lg font-bold text-white">Service Leaderboard</h1>
+					<h1 className="text-lg font-bold text-revDeskPurple-dark">Service Leaderboard</h1>
 					<p className="text-xs text-gray-500 mt-0.5">
 						{sortBy === "jobs"
 							? "Ranked by number of jobs"
 							: "Ranked by total revenue"}
 					</p>
 				</div>
-				<div className="flex items-center gap-1 bg-revDeskBlack p-1 rounded-full">
+				<div className="flex items-center gap-1 bg-revDeskPink p-1 rounded-full">
 					<Link
 						href={{
 							pathname: "/admin",
@@ -49,8 +49,8 @@ const ServiceLeaderboard = ({
 						<span
 							className={`px-3 py-1 rounded-full text-xs font-medium block transition-all ${
 								sortBy === "revenue"
-									? "bg-revDeskBlue text-white"
-									: "text-gray-400 hover:text-white"
+									? "bg-revDeskPink-light text-revDeskPurple-dark"
+									: "text-revDeskPink-400 hover:text-white"
 							}`}>
 							Revenue
 						</span>
@@ -63,8 +63,8 @@ const ServiceLeaderboard = ({
 						<span
 							className={`px-3 py-1 rounded-full text-xs font-medium block transition-all ${
 								sortBy === "jobs"
-									? "bg-revDeskBlue text-white"
-									: "text-gray-400 hover:text-white"
+									? "bg-revDeskPink-light text-revDeskPurple-dark"
+									: "text-revDeskPink-400 hover:text-white"
 							}`}>
 							Jobs
 						</span>
@@ -86,7 +86,7 @@ const ServiceLeaderboard = ({
 						return (
 							<div
 								key={service.serviceType}
-								className={`flex items-center gap-3 p-3 rounded-lg bg-revDeskBlack-light ${isPodium ? `border-l-2 ${RANK_BORDERS[rank]}` : ""}`}>
+								className={`flex items-center gap-3 p-3 rounded-lg bg-revDeskPurple-light/70 ${isPodium ? `border-l-2 ${RANK_BORDERS[rank]}` : ""}`}>
 								<div className="w-8 text-center shrink-0">
 									{isPodium ? (
 										<span className="text-lg">{MEDALS[rank]}</span>

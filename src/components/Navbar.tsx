@@ -13,21 +13,21 @@ const Navbar = () => {
 	return (
 		<div className="flex items-center justify-between p-4">
 			{/* SEARCH BAR */}
-			<div className="hidden md:flex items-center gap-2 text-xs rounded-full ring-[1.5px] ring-gray-300 px-2">
-				<FontAwesomeIcon icon={faMagnifyingGlass} className="text-white w-5" />
+			<div className="hidden md:flex items-center gap-2 text-xs rounded-full ring-[2px] ring-revDeskPink px-2">
+				<FontAwesomeIcon icon={faMagnifyingGlass} className="text-revDeskPink-dark w-5" />
 				<input
 					type="text"
 					placeholder="Search..."
-					className="w-50 p-2 bg-transparent outline-none text-white"
+					className="w-50 p-2 bg-transparent outline-none text-revDeskPink-dark"
 				/>
 			</div>
 			{/* ICONS AND USER */}
 			<div className="flex items-center gap-6 justify-end w-full">
 				<div className="rounded-full w-7 h-7 flex items-center justify-center cursor-pointer">
-					<FontAwesomeIcon icon={faCommentDots} className="text-white w-5" />
+					<FontAwesomeIcon icon={faCommentDots} className="text-revDeskPurple-dark w-5" />
 				</div>
 				<div className="flex flex-col">
-					<span className="text-xs leading-3 font-medium text-white">
+					<span className="text-xs leading-3 font-medium text-revDeskPurple-dark">
 						{user?.displayName ?? "Guest"}
 					</span>
 				</div>

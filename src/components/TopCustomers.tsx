@@ -10,10 +10,10 @@ const TopCustomers = ({ customers }: { customers: TopCustomerStat[] }) => {
 	const maxRevenue = customers[0]?.revenue ?? 1;
 
 	return (
-		<div className="bg-revDeskBlack-dark rounded-xl p-5">
+		<div className="bg-revDeskPink-dark rounded-xl p-5 border-b-3 border-revDeskPink">
 			<div className="flex justify-between items-center mb-5">
 				<div>
-					<h1 className="text-lg font-bold text-white">Top Customers</h1>
+					<h1 className="text-lg font-bold text-revDeskPurple-dark">Top Customers</h1>
 					<p className="text-xs text-gray-500 mt-0.5">By total spend</p>
 				</div>
 			</div>

@@ -16,9 +16,9 @@ const AverageInvoiceValue = ({
 	count: number;
 }) => {
 	return (
-		<div className="bg-revDeskBlack-dark rounded-xl p-5 flex flex-col gap-3 flex-1">
+		<div className="bg-revDeskPink-dark rounded-xl p-5 flex flex-col gap-3 flex-1 border-b-3 border-revDeskPink">
 			<div>
-				<h2 className="text-sm font-bold text-white">Avg Invoice Value</h2>
+				<h2 className="text-sm font-bold text-revDeskPurple-dark">Avg Invoice Value</h2>
 				<p className="text-[11px] text-gray-500 mt-0.5">Paid invoices only</p>
 			</div>
 
@@ -33,11 +33,11 @@ const AverageInvoiceValue = ({
 				</div>
 				<div className="flex justify-between text-xs">
 					<span className="text-gray-500">Lowest</span>
-					<span className="text-gray-300 font-semibold">${fmt(lowest)}</span>
+					<span className="text-white-300 font-semibold">${fmt(lowest)}</span>
 				</div>
 				<div className="flex justify-between text-xs">
 					<span className="text-gray-500">Sample size</span>
-					<span className="text-gray-300 font-semibold">{count} invoices</span>
+					<span className="text-white-300 font-semibold">{count} invoices</span>
 				</div>
 			</div>
 		</div>

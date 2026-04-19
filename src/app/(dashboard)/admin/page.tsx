@@ -132,7 +132,7 @@ const AdminPage = async ({
 			<div className="w-full lg:w-2/3 flex flex-col gap-6">
 				{/* HEADER WITH FILTER */}
 				<div className="flex items-center justify-between flex-wrap gap-3">
-					<h1 className="text-xl font-bold text-white">
+					<h1 className="text-xl font-bold text-revDeskPurple-dark">
 						Dashboard - {periodLabel}
 					</h1>
 					<DashboardFilter active={period} searchParams={params} />

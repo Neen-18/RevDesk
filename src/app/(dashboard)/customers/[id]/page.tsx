@@ -43,7 +43,7 @@ const CustomerDetailPage = async ({
 				<EditCustomerButton customer={plainCustomer} />
 			</div>
 
-			<div className="bg-revDeskBlack-dark rounded-xl p-6 grid grid-cols-2 gap-4">
+			<div className="bg-revDeskPink-dark rounded-xl p-6 grid grid-cols-2 gap-4">
 				<div>
 					<p className="text-xs text-gray-500 uppercase tracking-widest mb-1">
 						Phone
@@ -89,7 +89,7 @@ const CustomerDetailPage = async ({
 				)}
 			</div>
 
-			<div className="bg-revDeskBlack-dark rounded-xl p-6">
+			<div className="bg-revDeskPink-dark rounded-xl p-6">
 				<h2 className="text-base font-semibold text-white mb-4">Invoices</h2>
 				{invoices.length === 0 ? (
 					<p className="text-sm text-gray-500">No invoices found.</p>

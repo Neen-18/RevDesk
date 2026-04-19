@@ -122,14 +122,14 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-			<div className="bg-revDeskBlack w-full max-w-5xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+			<div className="bg-revDeskPink-dark w-full max-w-5xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
 				<button
 					onClick={onClose}
 					className="absolute top-4 right-4 text-gray-400 hover:text-white">
 					<FontAwesomeIcon icon={faXmark} className="w-5 h-5" />
 				</button>
 
-				<h2 className="text-xl font-bold text-white mb-6">
+				<h2 className="text-xl font-bold text-revDeskPurple-dark mb-6">
 					Create New Invoice
 				</h2>
 
@@ -138,7 +138,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 						{/* Left side of invoice modal*/}
 						<div className="flex flex-col gap-4">
 							<div className="flex items-center gap-3">
-								<span className="text-xs font-semibold text-revDeskBlue uppercase tracking-widest whitespace-nowrap">
+								<span className="text-xs font-semibold text-revDeskPurple-light uppercase tracking-widest whitespace-nowrap">
 									Customer Information
 								</span>
 								<div className="flex-1 h-px bg-white/10" />
@@ -146,7 +146,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 
 							{/* Customer search */}
 							<div className="relative">
-								<label className="block text-xs text-gray-400 mb-1">
+								<label className="block text-xs text-gray-500 mb-1">
 									Select Existing Customer
 								</label>
 								<div className="relative">
@@ -161,7 +161,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 										}}
 										onFocus={() => setShowDropdown(true)}
 										onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
-										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskBlue"
+										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskPurple-dark"
 									/>
 									{showDropdown && search && filteredCustomers.length > 0 && (
 										<ul className="absolute z-10 w-full mt-1 bg-revDeskBlack-light border border-white/10 rounded-lg overflow-hidden shadow-xl">
@@ -169,9 +169,9 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 												<li
 													key={c.id}
 													onMouseDown={() => selectCustomer(c)}
-													className="px-3 py-2 text-sm text-white hover:bg-revDeskBlue/20 cursor-pointer">
+													className="px-3 py-2 text-sm text-white hover:bg-revDeskPurple-dark/20 cursor-pointer">
 													{c.firstName} {c.lastName}
-													<span className="text-xs text-gray-400 ml-2">
+													<span className="text-xs text-gray-500 ml-2">
 														{c.email}
 													</span>
 												</li>
@@ -219,7 +219,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 							</div>
 
 							<div className="flex items-center gap-3">
-								<span className="text-xs font-semibold text-revDeskBlue uppercase tracking-widest whitespace-nowrap">
+								<span className="text-xs font-semibold text-revDeskPurple-light uppercase tracking-widest whitespace-nowrap">
 									Invoice Information
 								</span>
 								<div className="flex-1 h-px bg-white/10" />
@@ -233,7 +233,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 									<select
 										value={status}
 										onChange={(e) => setStatus(e.target.value as InvoiceStatus)}
-										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskBlue">
+										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskPurple-dark">
 										{INVOICE_STATUS.map((s) => (
 											<option key={s} value={s}>
 												{s}
@@ -248,7 +248,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 									<select
 										value={paymentType}
 										onChange={(e) => setPaymentType(e.target.value)}
-										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskBlue">
+										className="w-full bg-revDeskBlack-dark text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskPurple-dark">
 										{PAYMENT_TYPES.map((p) => (
 											<option key={p} value={p}>
 												{p}
@@ -262,7 +262,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 						{/* Right side of invoice modal */}
 						<div className="flex flex-col gap-4">
 							<div className="flex items-center gap-3">
-								<span className="text-xs font-semibold text-revDeskBlue uppercase tracking-widest whitespace-nowrap">
+								<span className="text-xs font-semibold text-revDeskPurple-light uppercase tracking-widest whitespace-nowrap">
 									Services
 								</span>
 								<div className="flex-1 h-px bg-white/10" />
@@ -271,18 +271,18 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 							{services.map((service, i) => (
 								<div
 									key={i}
-									className="flex flex-col gap-3 p-4 rounded-xl border border-white/10 bg-revDeskBlack-dark relative">
+									className="flex flex-col gap-3 p-4 rounded-xl border border-revDeskPurple-dark/10 bg-revDeskPink relative">
 									{services.length > 1 && (
 										<button
 											type="button"
 											onClick={() => removeService(i)}
-											className="absolute top-3 right-3 text-gray-500 hover:text-red-400">
+											className="absolute top-3 right-3 text-revDeskPurple-dark hover:text-red-400">
 											<FontAwesomeIcon icon={faTrashCan} className="w-3.5" />
 										</button>
 									)}
 									<div className="grid grid-cols-2 gap-3">
 										<div>
-											<label className="block text-xs text-gray-400 mb-1">
+											<label className="block text-xs text-gray-700 mb-1">
 												Vehicle Type
 											</label>
 											<select
@@ -290,7 +290,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 												onChange={(e) =>
 													handleServiceChange(i, "vehicleType", e.target.value)
 												}
-												className="w-full bg-revDeskBlack text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskBlue">
+												className="w-full bg-revDeskBlack text-white text-sm rounded-lg px-3 py-2 outline-none border border-white/10 focus:border-revDeskPurple-dark">
 												{VEHICLE_TYPES.map((v) => (
 													<option key={v} value={v}>
 														{v}
@@ -299,7 +299,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 											</select>
 										</div>
 										<div>
-											<label className="block text-xs text-gray-400 mb-1">
+											<label className="block text-xs text-gray-700 mb-1">
 												Service Type
 											</label>
 											<input
@@ -313,7 +313,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 											/>
 										</div>
 										<div>
-											<label className="block text-xs text-gray-400 mb-1">
+											<label className="block text-xs text-gray-700 mb-1">
 												Quantity
 											</label>
 											<input
@@ -331,7 +331,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 											/>
 										</div>
 										<div>
-											<label className="block text-xs text-gray-400 mb-1">
+											<label className="block text-xs text-gray-700 mb-1">
 												Price ($)
 											</label>
 											<input
@@ -351,7 +351,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 										</div>
 									</div>
 									<div>
-										<label className="block text-xs text-gray-400 mb-1">
+										<label className="block text-xs text-gray-700 mb-1">
 											Notes
 										</label>
 										<textarea
@@ -374,7 +374,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 							</button>
 
 							<div className="mt-auto pt-4 border-t border-white/10 text-right">
-								<span className="text-sm text-gray-400">Total: </span>
+								<span className="text-sm text-gray-500">Total: </span>
 								<span className="text-lg font-bold text-revDeskGreen">
 									${total.toFixed(2)}
 								</span>
@@ -385,7 +385,7 @@ const CreateInvoiceModal = ({ onClose, onCreated, customers }: Props) => {
 					<button
 						type="submit"
 						disabled={loading}
-						className="mt-6 w-full bg-revDeskBlue hover:bg-revDeskBlue/80 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors">
+						className="mt-6 w-full bg-revDeskPurple-dark hover:bg-revDeskPurple-dark/80 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors">
 						{loading ? "Creating..." : "Create"}
 					</button>
 				</form>

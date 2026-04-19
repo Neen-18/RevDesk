@@ -88,8 +88,8 @@ const CustomerListPage = async ({
 						<span
 							className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${
 								dateRange === f.value
-									? "bg-revDeskBlue text-white"
-									: "bg-revDeskBlack-dark text-gray-400 hover:text-white"
+									? "bg-revDeskPink text-white"
+									: "bg-revDeskPink-dark text-white-400 hover:text-white"
 							}`}>
 							{f.label}
 						</span>
@@ -97,17 +97,17 @@ const CustomerListPage = async ({
 				))}
 			</div>
 
-			<div className="bg-revDeskBlack-dark p-5 rounded-xl">
+			<div className="bg-revDeskPink-dark p-5 rounded-xl">
 				{/* TOP BAR */}
 				<div className="flex items-center justify-between mb-5">
 					<div>
-						<h1 className="text-lg font-bold text-white">All Customers</h1>
+						<h1 className="text-lg font-bold text-revDeskPurple-dark">All Customers</h1>
 						<p className="text-xs text-gray-500 mt-0.5">
 							{filtered.length} total customers
 						</p>
 					</div>
 					<div className="flex items-center gap-3">
-						<div className="flex items-center gap-2 bg-revDeskBlack rounded-full px-3 py-1.5 ring-1 ring-revDeskBlack-light">
+						<div className="flex items-center gap-2 border-2 border-revDeskPink bg-revDeskPink-light rounded-full px-3 py-1.5">
 							<FontAwesomeIcon
 								icon={faMagnifyingGlass}
 								className="text-gray-400 w-3.5"
@@ -115,7 +115,7 @@ const CustomerListPage = async ({
 							<input
 								type="text"
 								placeholder="Search customers..."
-								className="bg-transparent outline-none text-sm text-white placeholder-gray-500 w-44"
+								className="bg-transparent outline-none text-sm text-revDeskPurple-dark placeholder-gray-500 w-44"
 							/>
 						</div>
 						<AddCustomerButton />
@@ -125,7 +125,7 @@ const CustomerListPage = async ({
 				{/* TABLE */}
 				<table className="w-full text-sm">
 					<thead>
-						<tr className="text-left text-xs text-gray-500 uppercase border-b border-revDeskBlack-light">
+						<tr className="text-left text-xs text-gray-500 uppercase border-b border-revDeskPink-light">
 							<th className="pb-3 font-medium">Customer</th>
 							<th className="pb-3 font-medium hidden md:table-cell">Phone</th>
 							<th className="pb-3 font-medium hidden lg:table-cell">
@@ -139,26 +139,26 @@ const CustomerListPage = async ({
 						{customers.map((customer) => (
 							<tr
 								key={customer.id}
-								className="border-b border-revDeskBlack-light last:border-0 hover:bg-revDeskBlack-light transition-colors">
+								className="border-b border-revDeskPink-light last:border-0 hover:bg-revDeskPink-light transition-colors">
 								<td className="py-3 pr-4">
-									<p className="font-semibold text-white">
+									<p className="font-semibold text-revDeskPurple-dark">
 										{customer.firstName} {customer.lastName}
 									</p>
-									<p className="text-xs text-gray-400">{customer.email}</p>
+									<p className="text-xs text-revDeskPurple-light">{customer.email}</p>
 								</td>
-								<td className="py-3 pr-4 text-gray-300 hidden md:table-cell">
+								<td className="py-3 pr-4 text-revDeskPurple-light hidden md:table-cell">
 									{formatPhone(customer.phone)}
 								</td>
-								<td className="py-3 pr-4 text-gray-300 hidden lg:table-cell">
+								<td className="py-3 pr-4 text-revDeskPurple-light hidden lg:table-cell">
 									{formatDate(customer.lastVisit)}
 								</td>
-								<td className="py-3 pr-4 text-gray-300 hidden lg:table-cell">
+								<td className="py-3 pr-4 text-revDeskPurple-light hidden lg:table-cell">
 									{customer.returnCounter}
 								</td>
 								<td className="py-3">
 									<div className="flex items-center gap-2">
 										<Link href={`/customers/${customer.id}`}>
-											<button className="cursor-pointer w-7 h-7 flex items-center justify-center rounded-full bg-revDeskBlue hover:bg-revDeskBlue/80 transition-colors">
+											<button className="cursor-pointer w-7 h-7 flex items-center justify-center rounded-full bg-revDeskPurple-dark hover:bg-revDeskPurple-dark/80 transition-colors">
 												<FontAwesomeIcon
 													icon={faEye}
 													className="text-white w-3.5"
@@ -184,37 +184,37 @@ const CustomerListPage = async ({
 				</table>
 
 				{/* PAGINATION */}
-				<div className="mt-4 pt-4 border-t border-revDeskBlack-light flex flex-col items-center gap-2">
+				<div className="mt-4 pt-4 border-t border-revDeskPink-light flex flex-col items-center gap-2">
 					<div className="flex items-center gap-1">
 						<Link href={pageLink(1)}>
 							<span
-								className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${currentPage === 1 ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
+								className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${currentPage === 1 ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskPink-light"}`}>
 								First
 							</span>
 						</Link>
 						<Link href={pageLink(currentPage - 1)}>
 							<span
-								className={`w-7 h-7 flex items-center justify-center rounded-full text-xs transition-colors ${currentPage === 1 ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
+								className={`w-7 h-7 flex items-center justify-center rounded-full text-xs transition-colors ${currentPage === 1 ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskPink-light"}`}>
 								<FontAwesomeIcon icon={faChevronLeft} className="w-3" />
 							</span>
 						</Link>
 						{Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
 							<Link key={p} href={pageLink(p)}>
 								<span
-									className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-medium transition-colors ${p === currentPage ? "bg-revDeskBlue text-white" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
+									className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-medium transition-colors ${p === currentPage ? "bg-revDeskPurple-dark text-white" : "text-gray-400 hover:text-white hover:bg-revDeskPink-light"}`}>
 									{p}
 								</span>
 							</Link>
 						))}
 						<Link href={pageLink(currentPage + 1)}>
 							<span
-								className={`w-7 h-7 flex items-center justify-center rounded-full text-xs transition-colors ${currentPage === totalPages ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
+								className={`w-7 h-7 flex items-center justify-center rounded-full text-xs transition-colors ${currentPage === totalPages ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskPink-light"}`}>
 								<FontAwesomeIcon icon={faChevronRight} className="w-3" />
 							</span>
 						</Link>
 						<Link href={pageLink(totalPages)}>
 							<span
-								className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${currentPage === totalPages ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
+								className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${currentPage === totalPages ? "text-gray-600 pointer-events-none" : "text-gray-400 hover:text-white hover:bg-revDeskPink-light"}`}>
 								Last
 							</span>
 						</Link>

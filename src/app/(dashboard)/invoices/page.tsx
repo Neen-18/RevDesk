@@ -102,24 +102,24 @@ const InvoiceListPage = async ({
 							query: { ...params, dateRange: f.value, page: "1" },
 						}}>
 						<span
-							className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${dateRange === f.value ? "bg-revDeskBlue text-white" : "bg-revDeskBlack-dark text-gray-400 hover:text-white"}`}>
+							className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${dateRange === f.value ? "bg-revDeskPink text-white" : "bg-revDeskPink-dark text-white-400 hover:text-white"}`}>
 							{f.label}
 						</span>
 					</Link>
 				))}
 			</div>
 
-			<div className="bg-revDeskBlack-dark p-5 rounded-xl">
+			<div className="bg-revDeskPink-dark p-5 rounded-xl">
 				{/* TOP BAR */}
 				<div className="flex items-center justify-between mb-5">
 					<div>
-						<h1 className="text-lg font-bold text-white">All Invoices</h1>
+						<h1 className="text-lg font-bold text-revDeskPurple-dark">All Invoices</h1>
 						<p className="text-xs text-gray-500 mt-0.5">
 							{filteredInvoices.length} total invoices
 						</p>
 					</div>
 					<div className="flex items-center gap-3">
-						<div className="flex items-center gap-2 bg-revDeskBlack rounded-full px-3 py-1.5 ring-1 ring-revDeskBlack-light">
+						<div className="flex items-center gap-2 border-2 border-revDeskPink bg-revDeskPink-light rounded-full px-3 py-1.5">
 							<FontAwesomeIcon
 								icon={faMagnifyingGlass}
 								className="text-gray-400 w-3.5"
@@ -127,7 +127,7 @@ const InvoiceListPage = async ({
 							<input
 								type="text"
 								placeholder="Search invoices..."
-								className="bg-transparent outline-none text-sm text-white placeholder-gray-500 w-44"
+								className="bg-transparent outline-none text-sm text-revDeskPurple-dark placeholder-gray-500 w-44"
 							/>
 						</div>
 						<AddInvoiceButton customers={customers} />
@@ -137,7 +137,7 @@ const InvoiceListPage = async ({
 				{/* TABLE */}
 				<table className="w-full text-sm">
 					<thead>
-						<tr className="text-left text-xs text-gray-500 uppercase border-b border-revDeskBlack-light">
+						<tr className="text-left text-xs text-gray-500 uppercase border-b border-revDeskPink-light">
 							<th className="pb-3 font-medium">Customer</th>
 							<th className="pb-3 font-medium hidden lg:table-cell">Phone</th>
 							<th className="pb-3 font-medium hidden md:table-cell">Status</th>
@@ -150,16 +150,16 @@ const InvoiceListPage = async ({
 						{paginatedInvoices.map((invoice) => (
 							<tr
 								key={invoice.id}
-								className="border-b border-revDeskBlack-light last:border-0 hover:bg-revDeskBlack-light transition-colors">
+								className="border-b border-revDeskPink-light last:border-0 hover:bg-revDeskPink-light transition-colors">
 								<td className="py-3 pr-4">
-									<p className="font-semibold text-white">
+									<p className="font-semibold text-revDeskPurple-dark">
 										{invoice.customerName}
 									</p>
-									<p className="text-xs text-gray-400">
+									<p className="text-xs text-revDeskPurple-light">
 										{invoice.invoiceNumber ?? invoice.id}
 									</p>
 								</td>
-								<td className="py-3 pr-4 text-gray-300 hidden lg:table-cell">
+								<td className="py-3 pr-4 text-revDeskPurple-light hidden lg:table-cell">
 									{invoice.phone ? formatPhone(invoice.phone) : "—"}
 								</td>
 								<td className="py-3 pr-4 hidden md:table-cell">
@@ -173,13 +173,13 @@ const InvoiceListPage = async ({
 										${invoice.amount.toLocaleString()}
 									</span>
 								</td>
-								<td className="py-3 pr-4 text-gray-300 hidden lg:table-cell">
+								<td className="py-3 pr-4 text-revDeskPurple-light hidden lg:table-cell">
 									{formatDate(invoice.createdAt)}
 								</td>
 								<td className="py-3">
 									<div className="flex items-center gap-2">
 										<Link href={`/invoices/${invoice.id}`}>
-											<button className="w-7 h-7 flex items-center justify-center rounded-full bg-revDeskBlue hover:bg-revDeskBlue/80 transition-colors">
+											<button className="w-7 h-7 flex items-center justify-center rounded-full bg-revDeskPurple-dark hover:bg-revDeskPurple-dark/80 transition-colors">
 												<FontAwesomeIcon
 													icon={faEye}
 													className="text-white w-3.5"
@@ -222,7 +222,7 @@ const InvoiceListPage = async ({
 						{Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
 							<Link key={p} href={pageLink(p)}>
 								<span
-									className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-medium transition-colors ${p === currentPage ? "bg-revDeskBlue text-white" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
+									className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-medium transition-colors ${p === currentPage ? "bg-revDeskPurple-dark text-white" : "text-gray-400 hover:text-white hover:bg-revDeskBlack-light"}`}>
 									{p}
 								</span>
 							</Link>

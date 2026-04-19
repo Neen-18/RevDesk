@@ -15,9 +15,9 @@ const OutstandingReceivables = ({
 	const overduePct = total > 0 ? Math.round((overdue / total) * 100) : 0;
 
 	return (
-		<div className="bg-revDeskBlack-dark rounded-xl p-5 flex flex-col gap-3 flex-1">
+		<div className="bg-revDeskPink-dark rounded-xl p-5 flex flex-col gap-3 flex-1 border-b-3 border-revDeskPink">
 			<div>
-				<h2 className="text-sm font-bold text-white">Outstanding</h2>
+				<h2 className="text-sm font-bold text-revDeskPurple-dark">Outstanding</h2>
 				<p className="text-[11px] text-gray-500 mt-0.5">Unpaid receivables</p>
 			</div>
 
@@ -37,7 +37,7 @@ const OutstandingReceivables = ({
 				</div>
 			</div>
 
-			<div className="w-full bg-revDeskBlack rounded-full h-1.5 overflow-hidden mt-auto">
+			<div className="w-full bg-revDeskPink rounded-full h-1.5 overflow-hidden mt-auto">
 				<div
 					className="h-1.5 rounded-full bg-red-500"
 					style={{ width: `${overduePct}%` }}

@@ -38,7 +38,7 @@ const InvoiceStatusBreakdown = ({ groups }: { groups: StatusGroup[] }) => {
 	const total = sorted.reduce((s, g) => s + g.count, 0);
 
 	return (
-		<div className="bg-revDeskBlack-dark rounded-xl p-5 h-full flex flex-col">
+		<div className="bg-revDeskPink-dark rounded-xl p-5 h-full flex flex-col border-b-3 border-revDeskPink">
 			<div className="mb-5">
 				<h1 className="text-lg font-bold text-white">Invoice Status</h1>
 				<p className="text-xs text-gray-500 mt-0.5">
@@ -75,7 +75,7 @@ const InvoiceStatusBreakdown = ({ groups }: { groups: StatusGroup[] }) => {
 									</div>
 								</div>
 							</div>
-							<div className="w-full bg-revDeskBlack rounded-full h-2 overflow-hidden">
+							<div className="w-full bg-revDeskPink rounded-full h-2 overflow-hidden">
 								<div
 									className={`h-2 rounded-full ${cfg.bar} transition-all`}
 									style={{ width: `${pct}%` }}
@@ -86,7 +86,7 @@ const InvoiceStatusBreakdown = ({ groups }: { groups: StatusGroup[] }) => {
 				})}
 			</div>
 
-			<div className="mt-5 pt-4 border-t border-revDeskBlack-light grid grid-cols-2 gap-3">
+			<div className="mt-5 pt-4 border-t border-revDeskPink-light grid grid-cols-2 gap-3">
 				{sorted.map((g) => {
 					const cfg = statusConfig[g.status] ?? statusConfig["Draft"]!;
 					return (

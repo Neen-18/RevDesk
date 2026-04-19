@@ -14,7 +14,7 @@ const AddCustomerButton = () => {
 		<>
 			<button
 				onClick={() => setOpen(true)}
-				className="flex items-center gap-2 bg-revDeskBlue hover:bg-revDeskBlue/80 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors cursor-pointer">
+				className="flex items-center gap-2 border-2 border-revDeskPink bg-revDeskPurple-light hover:bg-revDeskPink-light/80 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors cursor-pointer">
 				<FontAwesomeIcon icon={faPlus} className="w-3.5" />
 				Add Customer
 			</button>

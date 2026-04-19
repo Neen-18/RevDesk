@@ -19,7 +19,7 @@ const DashboardFilter = ({
 	searchParams: { [key: string]: string | undefined };
 }) => {
 	return (
-		<div className="flex items-center gap-1 bg-revDeskBlack-dark p-1 rounded-full">
+		<div className="flex items-center gap-1 bg-revDeskPink p-1 rounded-full">
 			{periods.map((p) => (
 				<Link
 					key={p.value}
@@ -30,8 +30,8 @@ const DashboardFilter = ({
 					<span
 						className={`px-4 py-1.5 rounded-full text-sm font-medium block transition-all duration-200 ${
 							active === p.value
-								? "bg-revDeskBlue text-white"
-								: "text-gray-400 hover:text-white"
+								? "bg-revDeskPink-light text-revDeskPurple-dark"
+								: "bg-revDeskPink text-revDeskPink-light-400 hover:text-white"
 						}`}>
 						{p.label}
 					</span>

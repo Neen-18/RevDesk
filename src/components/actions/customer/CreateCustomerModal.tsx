@@ -48,20 +48,20 @@ const CreateCustomerModal = ({ onClose, onCreated }: Props) => {
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-			<div className="bg-revDeskBlack w-full max-w-2xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+			<div className="bg-revDeskPink-dark w-full max-w-2xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
 				<button
 					onClick={onClose}
-					className="absolute top-4 right-4 text-gray-400 hover:text-white">
+					className="absolute top-4 right-4 text-gray-600 hover:text-white">
 					<FontAwesomeIcon icon={faXmark} className="w-5 h-5" />
 				</button>
 
-				<h2 className="text-xl font-bold text-white mb-6">
+				<h2 className="text-xl font-bold text-revDeskPurple-dark mb-6">
 					Create New Customer
 				</h2>
 
 				<form onSubmit={handleSubmit} className="flex flex-col gap-5">
 					<div>
-						<p className="text-xs font-semibold text-revDeskBlue uppercase tracking-widest mb-3">
+						<p className="text-xs font-semibold text-revDeskPurple-light uppercase tracking-widest mb-3">
 							Personal Information
 						</p>
 						<div className="grid grid-cols-2 gap-4">
@@ -116,7 +116,7 @@ const CreateCustomerModal = ({ onClose, onCreated }: Props) => {
 					</div>
 
 					<div>
-						<label className="block text-xs text-gray-400 mb-1">Notes</label>
+						<label className="block text-xs text-gray-600 mb-1">Notes</label>
 						<textarea
 							name="notes"
 							value={form.notes}
@@ -129,7 +129,7 @@ const CreateCustomerModal = ({ onClose, onCreated }: Props) => {
 					<button
 						type="submit"
 						disabled={loading}
-						className="w-full bg-revDeskBlue hover:bg-revDeskBlue/80 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors">
+						className="w-full bg-revDeskPurple-dark hover:bg-revDeskPurple-dark/80 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors">
 						{loading ? "Creating..." : "Create"}
 					</button>
 				</form>

@@ -130,7 +130,7 @@ const EditCustomerModal = ({ customer, onClose, onUpdated }: CustomerProps) => {
 					<button
 						type="submit"
 						disabled={loading}
-						className="w-full bg-revDeskBlue hover:bg-revDeskBlue/80 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors">
+						className="w-full bg-revDeskPink hover:bg-revDeskPink/80 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors">
 						{loading ? "Saving..." : "Save Changes"}
 					</button>
 				</form>

@@ -17,13 +17,13 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-revDeskBlack-dark">
-			<div className="flex flex-col items-center gap-6 rounded-2xl bg-revDeskBlack p-12 shadow-md">
-				<h1 className="text-2xl font-bold text-white">RevDesk</h1>
-				<p className="text-sm text-gray-400">Sign in to continue</p>
+		<div className="flex min-h-screen items-center justify-center bg-revDeskPink-light border-3 border-revDeskPink">
+			<div className="flex flex-col items-center gap-6 rounded-2xl bg-revDeskPink-dark p-12 border-3 border-revDeskPink">
+				<h1 className="text-2xl font-bold text-revDeskPurple-dark">RevDesk</h1>
+				<p className="text-sm text-revDeskPurple-light">Sign in to continue</p>
 				<button
 					onClick={handleGoogleLogin}
-					className="flex items-center gap-3 rounded-lg border border-revDeskBlack-light bg-revDeskBlack-light px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-revDeskBlue transition">
+					className="flex items-center gap-3 rounded-lg border-3 border-revDeskPink bg-revDeskPurple-light px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-revDeskPink-dark transition">
 					<svg className="h-5 w-5" viewBox="0 0 24 24">
 						<path
 							d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
